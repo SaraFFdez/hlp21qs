@@ -6,36 +6,47 @@
 
 /// answer to Tick1
 // the header given here is correct.
-let fact n =
-        if n = 0
-        then 1.0
-        else List.reduce (*) [1.0..float n]
+let fact n = if n = 0 then 1.0 else List.reduce (*) [1.0..float n]
+
+let oddOrEven i = if (i%2) = 0 then [1.0] else [-1.0]
+
+let coeff list = List.collect (oddOrEven) list
 
 
+let addZeroSin list = 
+    let addzero i =
+        [0.0; i]
+    List.collect addzero list
 
+
+let addZeroCos list = 
+    let addzero i =
+        [i; 0.0]
+    List.collect addzero list
+
+let test1 = addZeroSin (coeff [0..5])
 
 let sine (r,theta) n = 
-    let coeffSin i =
-        if (n%2) = 0 then 1.0
-        else -1.0
-    let term i = 
-        (r * (theta ** (float i))) / (float (fact i)) 
-    [1..4..n] |> List.mapi term coeffSin  |> List.reduce (+)
-   // [0..4..n] |> List.map term |> List.reduce (-)
+    let coeffList = addZeroSin (coeff [0..n/2])
+    let term i coeff= 
+        (coeff * r * (theta ** (float i))) / (float (fact i)) 
+    List.mapi term coeffList |> List.reduce (+) 
 
-let answer = sine (2.0, 1.0) 4
+
+let cosine (r,theta) n =
+    let coeffList = addZeroCos (coeff [0..n/2])
+    let term i coeff = 
+        (coeff * r * (theta ** (float i))) / (float (fact i)) 
+    List.mapi term coeffList |> List.reduce (+) 
+
+let sineTest = sine (1.0, 1.0) 2
+let cosTest = cosine (2.0, 0.1) 2
     
-let expo x n =
-    let term i =                             // Notice x is no longer a parameter
-        (x ** (float i)) / (float (fact i))  // of term. This is because x is
-                                                 // already a parameter of expo
-    [0..i] |> List.map term |> List.reduce (+)
-
-
 
 let polarToCartesianApprox (r,theta) n = 
-    failwithf "Tick1 not yet implemented" // replace this line with your top-level implementation
-    let cosine = 
+   (cosine (r,theta) n, sine(r,theta) n)
+
+let test = polarToCartesianApprox (2.0, 0.1) 2 
 
 //--------------------testbench code - DO NOT CHANGE-----------------------------//
 

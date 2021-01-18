@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "dm+/r3BYDyMBSuJ/o2FFH9x8bAG6D9n8QjRaRIjyBDemdoxAw2xDw7sraRF7+LFhSLk4g3RNtxZvuKLZeUCqIw==",
+  "success": true,
+  "projectFilePath": "c:\\Users\\usuario\\Documents\\GitHub\\hlp21qs\\Tick1q\\Tests.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\usuario\\.nuget\\packages\\fsharp.core\\5.0.0\\fsharp.core.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
