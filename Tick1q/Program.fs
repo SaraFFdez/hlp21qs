@@ -6,9 +6,36 @@
 
 /// answer to Tick1
 // the header given here is correct.
+let fact n =
+        if n = 0
+        then 1.0
+        else List.reduce (*) [1.0..float n]
+
+
+
+
+let sine (r,theta) n = 
+    let coeffSin i =
+        if (n%2) = 0 then 1.0
+        else -1.0
+    let term i = 
+        (r * (theta ** (float i))) / (float (fact i)) 
+    [1..4..n] |> List.mapi term coeffSin  |> List.reduce (+)
+   // [0..4..n] |> List.map term |> List.reduce (-)
+
+let answer = sine (2.0, 1.0) 4
+    
+let expo x n =
+    let term i =                             // Notice x is no longer a parameter
+        (x ** (float i)) / (float (fact i))  // of term. This is because x is
+                                                 // already a parameter of expo
+    [0..i] |> List.map term |> List.reduce (+)
+
+
+
 let polarToCartesianApprox (r,theta) n = 
     failwithf "Tick1 not yet implemented" // replace this line with your top-level implementation
-
+    let cosine = 
 
 //--------------------testbench code - DO NOT CHANGE-----------------------------//
 
